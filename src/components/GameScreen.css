@@ -156,7 +156,7 @@
 }
 
 .submit-btn:hover:not(:disabled) {
-    background-color: #5568d3;
+    background-color: #d35590;
     transform: translateY(-2px);
 }
 
