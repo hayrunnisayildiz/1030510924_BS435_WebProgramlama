@@ -1,4 +1,6 @@
-export const imageSets = [
+import type { ImageSet } from "../types/index";
+
+export const imageSets: ImageSet[] = [
     {
         id: 1,
         difficulty: 'easy',
@@ -172,7 +174,9 @@ export const difficulties = {
     }
 };
 
-export const getRandomImageSet = (difficulty = null) => {
+export type { ImageSet } from "../types/index";
+
+export const getRandomImageSet = (difficulty: string | null = null): ImageSet => {
     let availableSets = imageSets;
 
     if (difficulty) {
@@ -232,3 +236,4 @@ export const achievements = [
         mode: 'timed'
     }
 ];
+

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Image as ImageType } from "../types/index";
+import type { Image as ImageType } from "../types/index";
 import "./GameScreen.css";
 
 interface GameScreenProps {
@@ -8,17 +8,30 @@ interface GameScreenProps {
     round: number;
     score: number;
     difficulty: string;
+    lives?: number;
+    timeLeft?: number | null;
+    hasUsedHint: boolean;
 }
 
 export default function GameScreen({
-                                       images,
-                                       onSubmit,
-                                       round,
-                                       score,
-                                       difficulty
-                                   }: GameScreenProps) {
+    images,
+    onSubmit,
+    round,
+    score,
+    difficulty,
+    lives,
+    timeLeft,
+    hasUsedHint
+}: GameScreenProps) {
     const [selected, setSelected] = useState<string | null>(null);
-    const [showHint, setShowHint] = useState(false);
+    const [showHint, setShowHint] = useState(hasUsedHint);
+
+    // hasUsedHint değiştiğinde ipucuyu göster
+    useEffect(() => {
+        if (hasUsedHint) {
+            setShowHint(true);
+        }
+    }, [hasUsedHint]);
 
     const handleImageClick = (imageId: string) => {
         setSelected(imageId);
@@ -27,8 +40,6 @@ export default function GameScreen({
     const handleSubmit = () => {
         if (selected) {
             onSubmit(selected);
-            setSelected(null);
-            setShowHint(false);
         }
     };
 
@@ -38,12 +49,28 @@ export default function GameScreen({
 
     const aiImage = images.find((img) => img.isAI);
 
+    // Zaman formatı
+    const formatTime = (seconds: number | null | undefined) => {
+        if (seconds === null || seconds === undefined) return "";
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins}:${secs.toString().padStart(2, "0")}`;
+    };
+
     return (
         <div className="game-screen">
             <div className="game-header">
                 <div className="game-info">
                     <h2>Tur {round}</h2>
                     <p>Puan: {score}</p>
+                    {lives !== undefined && (
+                        <p className="lives-info">❤️ Can: {lives}</p>
+                    )}
+                    {timeLeft !== null && timeLeft !== undefined && timeLeft > 0 && (
+                        <p className={`time-info ${timeLeft <= 10 ? "time-warning" : ""}`}>
+                            ⏱️ {formatTime(timeLeft)}
+                        </p>
+                    )}
                 </div>
                 <div className="difficulty-badge">{difficulty}</div>
             </div>
@@ -51,6 +78,11 @@ export default function GameScreen({
             <div className="game-instruction">
                 <h3>Hangi görsel AI tarafından oluşturulmuştur?</h3>
                 <p>3 görselden birini seç</p>
+                {hasUsedHint && (
+                    <p className="second-chance-notice">
+                        ⚠️ İkinci şansın! Daha dikkatli seç.
+                    </p>
+                )}
             </div>
 
             {showHint && aiImage?.hint && (
@@ -87,7 +119,7 @@ export default function GameScreen({
                 <button
                     className="submit-btn"
                     onClick={handleSubmit}
-                    disabled={!selected}
+                    disabled={!selected || (timeLeft !== null && timeLeft !== undefined && timeLeft <= 0)}
                 >
                     Gönder
                 </button>

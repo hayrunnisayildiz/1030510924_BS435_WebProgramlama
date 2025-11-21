@@ -17,7 +17,8 @@
 
 .game-info {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .game-info h2 {
@@ -29,6 +30,30 @@
     margin: 0;
     font-size: 1.2rem;
     font-weight: 500;
+}
+
+.lives-info {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.time-info {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.time-info.time-warning {
+    color: #dc3545;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .difficulty-badge {
@@ -52,6 +77,12 @@
 .game-instruction p {
     color: #666;
     margin: 0;
+}
+
+.second-chance-notice {
+    color: #ff9800 !important;
+    font-weight: 600;
+    margin-top: 0.5rem !important;
 }
 
 .hint-box {
