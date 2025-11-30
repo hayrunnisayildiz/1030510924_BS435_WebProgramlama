@@ -13,19 +13,19 @@ export default function StartScreen({ onStart }: StartScreenProps) {
             id: "normal",
             name: "Normal Mod",
             description: "Klasik oyun modu. 3 can hakkın var. Yanlış seçimde ipucu alabilirsin.",
-            icon: "🎯"
+            icon: ""
         },
         {
             id: "timed",
             name: "Zaman Yarışı",
             description: "Her tur için zaman limiti var! Hızlı düşün ve doğru tahmin yap.",
-            icon: "⏱️"
+            icon: ""
         }
     ];
 
     return (
         <div className="start-screen">
-            <h1 className="title">🎮 AI mı Gerçek mi?</h1>
+            <h1 className="title">AI mi Gerçek mi?</h1>
 
             <div className="intro">
                 <p>
@@ -67,7 +67,7 @@ export default function StartScreen({ onStart }: StartScreenProps) {
                 className="start-button"
                 onClick={() => onStart(selectedMode)}
             >
-                Başla 🚀
+                Başla
             </button>
         </div>
     );

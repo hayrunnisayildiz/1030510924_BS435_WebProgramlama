@@ -31,7 +31,7 @@ export default function ResultScreen({
         <div className="result-screen">
             <div className={`result-card ${isCorrect ? "success" : "failure"}`}>
                 <div className="result-icon">
-                    {isGameOver ? "💀" : isCorrect ? "🎉" : "❌"}
+                    {isGameOver ? "Oyun Bitti" : isCorrect ? "Basarili" : "Basarisiz"}
                 </div>
                 <h2 className="result-title">
                     {isGameOver
@@ -60,16 +60,16 @@ export default function ResultScreen({
                     {lives !== undefined && (
                         <div className="stat-item">
                             <span className="stat-label">Kalan Can:</span>
-                            <span className="stat-value">❤️ {lives}</span>
+                            <span className="stat-value">{lives}</span>
                         </div>
                     )}
                     <div className="stat-item">
                         <span className="stat-label">Doğru:</span>
-                        <span className="stat-value">✅ {correctAnswers}</span>
+                        <span className="stat-value">{correctAnswers}</span>
                     </div>
                     <div className="stat-item">
                         <span className="stat-label">Yanlış:</span>
-                        <span className="stat-value">❌ {wrongAnswers}</span>
+                        <span className="stat-value">{wrongAnswers}</span>
                     </div>
                     <div className="stat-item">
                         <span className="stat-label">Mod:</span>
@@ -80,11 +80,11 @@ export default function ResultScreen({
                 <div className="result-actions">
                     {!isGameOver && (
                         <button className="next-round-btn" onClick={onNextRound}>
-                            Sonraki Tur ➡️
+                            Sonraki Tur
                         </button>
                     )}
                     <button className="restart-btn" onClick={onRestart}>
-                        {isGameOver ? "Yeniden Başla 🔄" : "Ana Menü 🏠"}
+                        {isGameOver ? "Yeniden Başla" : "Ana Menü"}
                     </button>
                 </div>
             </div>

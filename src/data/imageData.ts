@@ -203,35 +203,35 @@ export const achievements = [
         id: 1,
         name: 'İlk Adım',
         description: 'İlk doğru tahmini yap',
-        icon: '🎯',
+        icon: '',
         requirement: 1
     },
     {
         id: 2,
         name: 'Keskin Göz',
         description: '3 doğru tahmin yap',
-        icon: '👁️',
+        icon: '',
         requirement: 3
     },
     {
         id: 3,
         name: 'AI Dedektörü',
         description: '5 doğru tahmin yap',
-        icon: '🔍',
+        icon: '',
         requirement: 5
     },
     {
         id: 4,
         name: 'Usta',
         description: '10 doğru tahmin yap',
-        icon: '⭐',
+        icon: '',
         requirement: 10
     },
     {
         id: 5,
         name: 'Hız Şampiyonu',
         description: 'Zamana karşı modda kazan',
-        icon: '⚡',
+        icon: '',
         requirement: 1,
         mode: 'timed'
     }

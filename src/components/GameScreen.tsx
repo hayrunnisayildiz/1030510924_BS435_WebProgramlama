@@ -64,11 +64,11 @@ export default function GameScreen({
                     <h2>Tur {round}</h2>
                     <p>Puan: {score}</p>
                     {lives !== undefined && (
-                        <p className="lives-info">❤️ Can: {lives}</p>
+                        <p className="lives-info">Can: {lives}</p>
                     )}
                     {timeLeft !== null && timeLeft !== undefined && timeLeft > 0 && (
                         <p className={`time-info ${timeLeft <= 10 ? "time-warning" : ""}`}>
-                            ⏱️ {formatTime(timeLeft)}
+                            Zaman: {formatTime(timeLeft)}
                         </p>
                     )}
                 </div>
@@ -80,14 +80,14 @@ export default function GameScreen({
                 <p>3 görselden birini seç</p>
                 {hasUsedHint && (
                     <p className="second-chance-notice">
-                        ⚠️ İkinci şansın! Daha dikkatli seç.
+                        İkinci şansın! Daha dikkatli seç.
                     </p>
                 )}
             </div>
 
             {showHint && aiImage?.hint && (
                 <div className="hint-box">
-                    💡 <strong>İpucu:</strong> {aiImage.hint}
+                    <strong>İpucu:</strong> {aiImage.hint}
                 </div>
             )}
 
@@ -104,7 +104,7 @@ export default function GameScreen({
                             className="game-image"
                         />
                         {selected === image.id && (
-                            <div className="selection-overlay">✓</div>
+                            <div className="selection-overlay">Secildi</div>
                         )}
                     </div>
                 ))}
@@ -113,7 +113,7 @@ export default function GameScreen({
             <div className="game-actions">
                 {!showHint && (
                     <button className="hint-btn" onClick={handleShowHint}>
-                        💡 İpucu Al
+                        İpucu Al
                     </button>
                 )}
                 <button
