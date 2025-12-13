@@ -23,10 +23,7 @@
     font-size: clamp(2rem, 5vw, 2.75rem);
     margin-bottom: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #000000;
     letter-spacing: -0.02em;
 }
 
@@ -169,7 +166,7 @@
 .start-button {
     padding: 1rem 3rem;
     font-size: 1.1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: #667eea;
     color: white;
     border: none;
     border-radius: 12px;
@@ -200,6 +197,7 @@
 }
 
 .start-button:hover {
+    background-color: #5568d3;
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
 }

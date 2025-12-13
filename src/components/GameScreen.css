@@ -6,19 +6,22 @@
 
 .game-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: #ff9800;
     border-radius: 12px;
     color: white;
+    position: relative;
 }
 
 .game-info {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    align-items: center;
+    text-align: center;
 }
 
 .game-info h2 {
@@ -62,6 +65,8 @@
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.9rem;
+    position: absolute;
+    right: 1.5rem;
 }
 
 .game-instruction {
@@ -187,7 +192,7 @@
 }
 
 .submit-btn:hover:not(:disabled) {
-    background-color: #d35590;
+    background-color: #5568d3;
     transform: translateY(-2px);
 }
 

@@ -112,11 +112,12 @@
 }
 
 .next-round-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: #667eea;
     color: white;
 }
 
 .next-round-btn:hover {
+    background-color: #5568d3;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
