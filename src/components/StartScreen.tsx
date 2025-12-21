@@ -6,20 +6,25 @@ interface StartScreenProps {
 }
 
 export default function StartScreen({ onStart }: StartScreenProps) {
-    const [selectedMode, setSelectedMode] = useState<string>("normal");
+    const [selectedMode, setSelectedMode] = useState<string | null>(null);
+    const [showInfo, setShowInfo] = useState(false);
 
     const gameModes = [
         {
             id: "normal",
             name: "Normal Mod",
+            displayName: "🎮 Normal Mod",
             description: "Klasik oyun modu. 3 can hakkın var. Yanlış seçimde ipucu alabilirsin.",
-            icon: ""
+            icon: "🎮",
+            gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
         },
         {
             id: "timed",
             name: "Zaman Yarışı",
+            displayName: "⏱️ Zaman Yarışı",
             description: "Her tur için zaman limiti var! Hızlı düşün ve doğru tahmin yap.",
-            icon: ""
+            icon: "⏱️",
+            gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
         }
     ];
 
@@ -27,24 +32,47 @@ export default function StartScreen({ onStart }: StartScreenProps) {
         <div className="start-screen">
             <h1 className="title">AI mi Gerçek mi?</h1>
 
-            <div className="intro">
-                <p>
-                    Bu oyunda sana aynı anda <strong>3 farklı görsel</strong> gösterilecek.
-                    Bunlardan <strong>ikisi gerçek</strong>, biri ise{" "}
-                    <strong>yapay zekâ</strong> tarafından üretilmiş olacak.
-                </p>
+            <button 
+                className="info-button"
+                onClick={() => setShowInfo(true)}
+            >
+                ℹ️ Oyun Hakkında
+            </button>
 
-                <p>
-                    Amacın, hangi görselin yapay zekâ tarafından üretildiğini bulmak!
-                </p>
+            {showInfo && (
+                <>
+                    <div className="info-overlay" onClick={() => setShowInfo(false)} />
+                    <div className="info-panel">
+                        <div className="info-panel-header">
+                            <h2>Oyun Hakkında</h2>
+                            <button 
+                                className="close-info-btn"
+                                onClick={() => setShowInfo(false)}
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <div className="info-content">
+                            <p>
+                                Bu oyunda sana aynı anda <strong>3 farklı görsel</strong> gösterilecek.
+                                Bunlardan <strong>ikisi gerçek</strong>, biri ise{" "}
+                                <strong>yapay zekâ</strong> tarafından üretilmiş olacak.
+                            </p>
 
-                <h3>Kurallar:</h3>
-                <ul>
-                    <li>Her turda 3 görsel arasından bir seçim yap.</li>
-                    <li>Yanlış seçersen ipucu alabilir ve ikinci şans elde edersin.</li>
-                    <li>Doğru tahmin yaparsan puan kazanırsın!</li>
-                </ul>
-            </div>
+                            <p>
+                                Amacın, hangi görselin yapay zekâ tarafından üretildiğini bulmak!
+                            </p>
+
+                            <h3>Kurallar:</h3>
+                            <ul>
+                                <li>Her turda 3 görsel arasından bir seçim yap.</li>
+                                <li>Yanlış seçersen ipucu alabilir ve ikinci şans elde edersin.</li>
+                                <li>Doğru tahmin yaparsan puan kazanırsın!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </>
+            )}
 
             <div className="mode-selection">
                 <h3>Oyun Modunu Seç:</h3>
@@ -52,11 +80,13 @@ export default function StartScreen({ onStart }: StartScreenProps) {
                     {gameModes.map((mode) => (
                         <div
                             key={mode.id}
-                            className={`mode-card ${selectedMode === mode.id ? "selected" : ""}`}
+                            className={`mode-card ${selectedMode === mode.id ? "selected" : ""} mode-${mode.id}`}
                             onClick={() => setSelectedMode(mode.id)}
                         >
-                            <div className="mode-icon">{mode.icon}</div>
-                            <h4>{mode.name}</h4>
+                            <div className="mode-icon">
+                                {mode.icon}
+                            </div>
+                            <h4 className="mode-title">{mode.displayName}</h4>
                             <p>{mode.description}</p>
                         </div>
                     ))}
@@ -65,7 +95,8 @@ export default function StartScreen({ onStart }: StartScreenProps) {
 
             <button
                 className="start-button"
-                onClick={() => onStart(selectedMode)}
+                onClick={() => selectedMode && onStart(selectedMode)}
+                disabled={!selectedMode}
             >
                 Başla
             </button>

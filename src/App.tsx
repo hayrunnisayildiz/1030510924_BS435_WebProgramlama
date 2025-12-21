@@ -3,6 +3,7 @@ import "./App.css";
 import StartScreen from "./components/StartScreen";
 import GameScreen from "./components/GameScreen";
 import ResultScreen from "./components/ResultScreen";
+import BackgroundSelector from "./components/BackgroundSelector";
 import { getRandomImageSet, difficulties } from "./data/imageData";
 import type { Image, ImageSet } from "./types/index";
 
@@ -21,6 +22,16 @@ function App() {
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [wrongAnswers, setWrongAnswers] = useState(0);
     const [isGameOver, setIsGameOver] = useState(false);
+    const [backgroundColor, setBackgroundColor] = useState("#ffc0cb");
+
+    // Sayfa yüklendiğinde kaydedilmiş arka plan rengini uygula
+    useEffect(() => {
+        const savedColor = localStorage.getItem("background-color");
+        if (savedColor) {
+            setBackgroundColor(savedColor);
+            document.body.style.backgroundColor = savedColor;
+        }
+    }, []);
 
     const handleTimeUp = useCallback(() => {
         if (screen === "game") {
@@ -155,7 +166,9 @@ function App() {
     };
 
     return (
-        <div className="app">
+        <div className="app" style={{ backgroundColor }}>
+            <BackgroundSelector onColorChange={setBackgroundColor} />
+            
             {screen === "start" && <StartScreen onStart={handleStart} />}
             
             {screen === "game" && currentImageSet && (

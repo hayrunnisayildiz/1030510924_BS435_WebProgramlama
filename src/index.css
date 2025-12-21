@@ -27,6 +27,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #ffc0cb;
+  transition: background-color 0.3s ease;
 }
 
 h1 {
@@ -56,7 +57,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffc0cb;
+    background-color: var(--bg-color, #ffc0cb);
   }
   a:hover {
     color: #747bff;
